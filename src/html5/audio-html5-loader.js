@@ -67,6 +67,12 @@ var AudioHTML5Loader = function() {
      * @private
      */
     this.position = 0;
+    /**
+     * Назначенная скорость воспроизведения
+     * @type {number}
+     * @private
+     */
+    this.rate = 1.0;
 
     /**
      * Последнее ненулевое значение текущей позиции
@@ -922,6 +928,25 @@ AudioHTML5Loader.prototype.pause = function() {
 
     AudioHTML5Loader._catchPromise(this.audio.pause());
     this.position = this.audio.currentTime;
+};
+
+/**
+ * Установить скорость воспроизведения
+ * @param {Number} rate - скорость воспроизведения
+ */
+AudioHTML5Loader.prototype.setRate = function(rate) {
+    DEV && logger.debug(this, "setRate", rate);
+
+    if (!isFinite(rate)) {
+        logger.warn(this, "setRateFailed", rate);
+        return;
+    }
+
+    this.rate = rate;
+
+    this._promiseMetadata().then(function() {
+        this.audio.playbackRate = this.rate;
+    }.bind(this), noop);
 };
 
 /**

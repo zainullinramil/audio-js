@@ -334,6 +334,23 @@ AudioHTML5.prototype.stop = function(offset) {
 };
 
 /**
+ * Получить скорость воспроизведения
+ * @returns {number}
+ */
+AudioHTML5.prototype.getRate = function() {
+    return this._getLoader().audio.playbackRate;
+};
+
+/**
+ * Установить текущую скорость воспроизведения
+ * @param {number} position
+ */
+AudioHTML5.prototype.setRate = function(rate) {
+    DEV && logger.debug(this, "setRate", rate);
+    this._getLoader().setRate(rate);
+};
+
+/**
  * Получить позицию воспроизведения
  * @returns {number}
  */

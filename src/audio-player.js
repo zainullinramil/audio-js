@@ -479,6 +479,7 @@ Audio.prototype._populateEvents = function(event, offset, data) {
                 duration: this.getDuration(offset),
                 loaded: this.getLoaded(offset),
                 position: offset ? 0 : this.getPosition(),
+                rate: offset ? 0 : this.getRate(),
                 played: offset ? 0 : this.getPlayed()
             });
             break;
@@ -834,6 +835,23 @@ Audio.prototype.isPreloading = function(src) {
 //  Тайминги
 
 // =================================================================
+
+/**
+ * Получение скорости воспроизведения.
+ * @returns {Number}
+ */
+Audio.prototype.getRate = function() {
+    return this.implementation.getRate();
+};
+
+/**
+ * Установка скорости воспроизведения.
+ * @returns {Number}
+ */
+Audio.prototype.setRate = function(rate) {
+    this.implementation.setRate(rate);
+    return rate;
+};
 
 /**
  * Получение позиции воспроизведения (в секундах).
