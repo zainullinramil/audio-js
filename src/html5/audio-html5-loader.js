@@ -324,6 +324,7 @@ AudioHTML5Loader.prototype._onNativePause = function() {
  * @private
  */
 AudioHTML5Loader.prototype._initUserEvents = function() {
+    document.body.addEventListener("focus", this.__startupAudio, true);
     document.body.addEventListener("mousedown", this.__startupAudio, true);
     document.body.addEventListener("keydown", this.__startupAudio, true);
     document.body.addEventListener("touchstart", this.__startupAudio, true);
@@ -334,6 +335,7 @@ AudioHTML5Loader.prototype._initUserEvents = function() {
  * @private
  */
 AudioHTML5Loader.prototype._deinitUserEvents = function() {
+    document.body.removeEventListener("focus", this.__startupAudio, true);
     document.body.removeEventListener("mousedown", this.__startupAudio, true);
     document.body.removeEventListener("keydown", this.__startupAudio, true);
     document.body.removeEventListener("touchstart", this.__startupAudio, true);

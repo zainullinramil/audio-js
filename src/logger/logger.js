@@ -161,7 +161,8 @@ Logger.log = function(level, channel, context) {
  * @param {ya.music.Audio.Logger~LogEntry} logEntry Сообщение лога.
  * @private
  */
-Logger._dumpEntry = function(logEntry) {
+Logger._dumpEntry = function (logEntry) {
+    console.log('logEntry',logEntry)
     try {
         var level = logEntry.level;
 
@@ -182,7 +183,8 @@ Logger._dumpEntry = function(logEntry) {
                 context
             ].concat(logEntry.message));
         }
-    } catch(e) {
+    } catch (e) {
+        throw(new Error('catch _dumpEntry', e))
     }
 };
 
